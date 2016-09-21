@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+form {    
+  border: 3px solid #f1f1f1;
+  width: 20%;	 
+  background-color: lightblue;
+  border-radius: 10px;
+  margin-left:40%;
+  margin-right:40%;
+  margin-top:10%;
+}
+
+input[type=text], input[type=password] {
+    width: 50%;
+    padding: 6px 10px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+	border-radius: 10px;
+	
+}
+
+button#sub {
+    background-color: green;
+    color: white;
+    padding: 7px 10px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+	border-radius: 10px;
+	text-align:center;
+	margin-left:60px;
+}
+
+.cancelbtn {
+    background-color: red;
+    color: white;
+    padding: 7px 10px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+	border-radius: 10px;
+	text-align:center;
+	margin-right:60px;
+}
+.container {
+    padding: 14px 20px;
+
+}
+span.psw {
+    float: right;
+}
+
+
+</style>
+
+<script>
+function loadXMLDoc(uname,psw)
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+        document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","/try/ajax/demo_get2.php?fname="+"No such account: "+uname+"&lname=Ford",true);
+xmlhttp.send();
+}
+</script>
+</head>
+
+<body>
+	
+<div id="myDiv"></div>
+
+<form>
+
+  <div class="container">
+    <label style="margin-left:1.3cm"><b>Username</b></label>
+	
+    <input type="text" placeholder="Enter Username" name="uname" required>
+    <br>
+    <label style="margin-left:1.3cm"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+    <div>   
+    <button type="submit" id="sub" onclick="loadXMLDoc('uname','psw')">Login</button> 
+	<button type="button" class="cancelbtn" onclick="loadXMLDoc()">Cancel</button>
+	</div> 
+    <input type="checkbox" checked="checked"> Remember me
+	<span class="psw">Forgot <a href="#">password?</a></span>
+
+  </div>       
+</form>
+
+</body>
+</html>
